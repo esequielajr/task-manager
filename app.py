@@ -1,11 +1,11 @@
 
 def newtask():
     task = {}
-    title = str(input('Digite o nome da tarefa: '))
+    title = str(input('Type the task name: '))
     task['title'] = title
-    description = str(input('Digite a descrição da tarefa: '))
+    description = str(input('Describe the task: : '))
     task['description'] = description
-    status = str(input('Digite o status da tarefa'))
+    status = str(input('Type the task status: '))
     task['status'] = status
     return task 
        
@@ -42,7 +42,6 @@ def start():
                 tasks.pop(select_task)
         else:
             break
-
 start()
 
 
