@@ -20,20 +20,20 @@ def start():
     tasks = []
     while True:
         menu()
-        user_choose = int(input('Select an option: '))
-        if user_choose == 1:
+        user_choice = int(input('Select an option: '))
+        if user_choice == 1:
             task = newtask()
             tasks.append(task)
             print('The task was created sucessfully.')
             print(tasks)
-        elif user_choose == 2:
+        elif user_choice == 2:
             if len(tasks) == 0:
                 print('You do not have created tasks yet.')
             else:
                 print(tasks)
                 select_task = int(input('Type the task number: '))
                 print(tasks[select_task])
-        elif user_choose == 3:
+        elif user_choice == 3:
             if len(tasks) == 0:
                 print('You do not have created tasks yet.')
             else:
