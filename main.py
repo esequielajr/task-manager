@@ -4,8 +4,6 @@ def newtask():
     task['title'] = title
     description = str(input('Describe the task: '))
     task['description'] = description
-    status = str(input('Type the task status: '))
-    task['status'] = status
     return task 
 
        
@@ -32,8 +30,6 @@ while True:
             print('You do not have created tasks yet.')
         else:
             print(tasks)
-            select_task = int(input('Type the task number: '))
-            print(tasks[select_task])
     elif user_choice == 3:
         if len(tasks) == 0:
             print('You do not have created tasks yet.')
