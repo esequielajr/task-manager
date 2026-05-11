@@ -23,16 +23,16 @@ while True:
     if user_choice == 1:
         task = newtask()
         tasks.append(task)
-        print('The task was created sucessfully.')
+        print('Task created sucessfully.')
         print(tasks)
     elif user_choice == 2:
         if len(tasks) == 0:
-            print('You do not have created tasks yet.')
+            print('You have not created tasks yet.')
         else:
             print(tasks)
     elif user_choice == 3:
         if len(tasks) == 0:
-            print('You do not have created tasks yet.')
+            print('You have not created tasks yet.')
         else:
             print(tasks)
             select_task = int(input('Type the task number: '))
