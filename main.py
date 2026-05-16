@@ -1,7 +1,10 @@
+from datetime import date
+
 def newtask():
     task = {}
     task['title'] = str(input('Type the task name: '))
     task['description'] = str(input('Describe the task: '))
+    task['date'] = date.today().strftime("%Y-%m-%d")
     return task 
 
        
