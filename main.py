@@ -1,17 +1,15 @@
 def newtask():
     task = {}
-    title = str(input('Type the task name: '))
-    task['title'] = title
-    description = str(input('Describe the task: '))
-    task['description'] = description
+    task['title'] = str(input('Type the task name: '))
+    task['description'] = str(input('Describe the task: '))
     return task 
 
        
 def menu():
     print('TASK MANAGER')
-    print('1 - Create a Task')
-    print('2 - View Tasks')
-    print('3 - Delete a Task')
+    print('1 - Create')
+    print('2 - View')
+    print('3 - Delete')
     print('4 - Leave')
 
 
@@ -19,18 +17,18 @@ tasks = []
 
 while True:
     menu()
-    user_choice = int(input('Select an option: '))
-    if user_choice == 1:
+    choice = int(input('Select an option: '))
+    if choice == 1:
         task = newtask()
         tasks.append(task)
         print('Task created sucessfully.')
         print(tasks)
-    elif user_choice == 2:
+    elif choice == 2:
         if len(tasks) == 0:
             print('You have not created tasks yet.')
         else:
             print(tasks)
-    elif user_choice == 3:
+    elif choice == 3:
         if len(tasks) == 0:
             print('You have not created tasks yet.')
         else:
