@@ -3,7 +3,14 @@ from datetime import date
 def newtask():
     task = {}
     task['title'] = str(input('Type the task name: '))
-    task['description'] = str(input('Describe the task: '))
+    task['description'] = str(input('Describe the task: ')) 
+    while True: 
+        priority = str(input('Select a task priority (min/mid/high): '))
+        if priority not in ('min', 'mid', 'high'):
+            print('Error: select one of the specified options.')
+        else:
+            break
+    task['priority'] = priority
     task['date'] = date.today().strftime("%Y-%m-%d")
     return task 
 
