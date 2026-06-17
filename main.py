@@ -21,13 +21,18 @@ def menu():
     print('2 - View')
     print('3 - Delete')
     print('4 - Leave\n')
+
     
-    
-def tasks_list(tasks):
+def read_tasks():
+    for task in tasks:
+        yield task 
+
+          
+def list_tasks(tasks):
     
     print('\nTASKS LIST')
     
-    for k, task in enumerate(tasks):
+    for k, task in enumerate(read_tasks()):
         print(f'\nID: {k+1}', end=' | ')  
         print(f'TITLE: {task["title"]}', end=' | ')  
         print(f'DESCRIPTION: {task["description"]}', end=' | ')
@@ -48,12 +53,12 @@ while True:
         if len(tasks) == 0:
             print('\nYou have not created tasks yet.')
         else:
-            tasks_list(tasks)
+            list_tasks(tasks)
     elif choice == 3:
         if len(tasks) == 0:
             print('\nYou have not created tasks yet.')
         else:
-            tasks_list(tasks)
+            list_tasks(tasks)
             select_task = int(input('\nType the task ID: '))
             tasks.pop(select_task-1)
             print('\nTask deleted sucessfully.')
