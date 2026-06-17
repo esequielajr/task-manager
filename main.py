@@ -1,3 +1,4 @@
+import utils
 from datetime import date
 
 def newtask():
@@ -15,8 +16,10 @@ def newtask():
     return task 
 
        
-def menu(): 
-    print('\nTASK MANAGER\n')
+def menu():
+	
+    utils.title('TASK MANAGER')
+    
     print('1 - Create')
     print('2 - View')
     print('3 - Delete')
