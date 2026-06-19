@@ -1,5 +1,6 @@
 import utils
 from datetime import date
+from time import sleep
 
 def newtask():
     task = {}
@@ -17,7 +18,7 @@ def newtask():
 
        
 def menu():
-	
+    
     utils.title('TASK MANAGER')
     
     print('1 - Create')
@@ -40,6 +41,11 @@ def list_tasks(tasks):
         print(f'TITLE: {task["title"]}', end=' | ')  
         print(f'DESCRIPTION: {task["description"]}', end=' | ')
         print(f'PRIORITY: {task["priority"]}')
+     
+    if len(tasks) <= 10:
+        sleep(len(tasks))
+    else:
+        sleep(10)
 
 
 tasks = []
@@ -52,19 +58,23 @@ while True:
         task = newtask()
         tasks.append(task)
         print('\nTask created sucessfully.')
+        sleep(1)
     elif choice == 2:
         if len(tasks) == 0:
             print('\nYou have not created tasks yet.')
+            sleep(1)
         else:
             list_tasks(tasks)
     elif choice == 3:
         if len(tasks) == 0:
             print('\nYou have not created tasks yet.')
+            sleep(1)
         else:
             list_tasks(tasks)
             select_task = int(input('\nType the task ID: '))
             tasks.pop(select_task-1)
             print('\nTask deleted sucessfully.')
+            sleep(1)
     else:
         break
 
