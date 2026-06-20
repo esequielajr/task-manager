@@ -13,6 +13,7 @@ def newtask():
         else:
             break
     task['priority'] = priority
+    task['state'] = 'pending'
     task['date'] = date.today().strftime("%Y-%m-%d")
     return task 
 
@@ -40,7 +41,9 @@ def list_tasks(tasks):
         print(f'\nID: {k+1}', end=' | ')  
         print(f'TITLE: {task["title"]}', end=' | ')  
         print(f'DESCRIPTION: {task["description"]}', end=' | ')
-        print(f'PRIORITY: {task["priority"]}')
+        print(f'PRIORITY: {task["priority"]}', end=' | ')
+        print(f'STATE: {task["state"]}', end=' | ')
+        print(f'DATE: {task["date"]}')
      
     if len(tasks) <= 10:
         sleep(len(tasks))
