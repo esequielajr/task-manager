@@ -26,16 +26,39 @@ def update_menu():
  
     
 def newtask():
+    
     task = {}
-    task['title'] = str(input('\nType the task title: '))
-    task['description'] = str(input('\nDescribe the task: ')) 
-    while True: 
-        priority = str(input('\nSelect a task priority (min/mid/high): '))
-        if priority not in ('min', 'mid', 'high'):
-            print('\nError: select one of the specified options.')
-        else:
+    
+    while True:
+        try:
+            task['title'] = str(input('\nType the task title: '))
             break
-    task['priority'] = priority
+        except:
+            print('Error, invalid entry, try again.')
+            sleep(1)
+    
+    while True:
+        try: 
+            task['description'] = str(input('\nDescribe the task: '))
+            break
+        except:
+            print('Error, invalid entry, try again.')
+            sleep(1)
+        
+    while True:
+        try:
+            priority = str(input('\nSelect a task priority (min/mid/high): '))
+            if priority not in ('min', 'mid', 'high'):
+                print('\nError: select one of the specified options. ')
+                sleep(1)
+                continue
+            else:
+                task['priority'] = priority
+                break
+        except:
+            print('Error: invalid option, try again.')
+            sleep(1)
+             
     task['state'] = 'pending'
     task['date'] = date.today().strftime("%Y-%m-%d")
     return task     
@@ -69,49 +92,82 @@ def update_task():
     list_tasks(tasks)
     
     while True:
-        select_task = int(input('\nSelect a task ID to update: '))
-        
-        if select_task == 0:
+        try:
+            select_task = int(input('\nSelect a task ID to update: '))
+            
+            if select_task == 0 or not tasks[select_task-1]:
+                print('\nError: invalid option, try again.')
+                sleep(1)
+                continue
+            else:
+                select_task -= 1
+                break
+            
+        except:
             print('\nError: invalid option, try again.')
-            continue
-        else:
-            select_task -= 1
-            break
+            sleep(1)
             
     while True:
         try:
             update_menu()
-            choice = int(input('Select an option: '))
-            if choice == 1:
-                title = str(input('\nType the new title: '))
-                tasks[select_task]['title'] = title
-                print('\nTitle updated sucessfully.')
-                sleep(1)
-            elif choice == 2:
-                description = str(input('\nType the new description: '))
-                tasks[select_task]['description'] = description
-                print('\nDescription updated sucessfully.')
-                sleep(1)
-            elif choice == 3:
-                while True: 
-                    priority = str(input('\nSelect a task priority (min/mid/high): '))
-                    if priority not in ('min', 'mid', 'high'):
-                        print('\nError: select one of the specified options.')
+            while True:
+                try:
+                    choice = int(input('Select an option: '))
+                    if choice not in (1,2,3,4,5):
+                        print('\nError: invalid option, try again.')
+                        sleep(1)
                     else:
                         break
-                tasks[select_task]['priority'] = priority
-                print('\nPriority updated sucessfully.')
-                sleep(1)
+                except:
+                    print('\nError: invalid option, try again.')
+                    sleep(1)
+                    
+            if choice == 1:
+                while True:
+                    try:
+                        title = str(input('\nType the new title: '))
+                        tasks[select_task]['title'] = title
+                        print('\nTitle updated sucessfully.')
+                        sleep(1)
+                        break
+                    except:
+                        print('\nError: invalid entry, try again.')
+                        sleep(1)
+            elif choice == 2:
+                while True:
+                    try:
+                        description = str(input('\nType the new description: '))
+                        tasks[select_task]['description'] = description
+                        print('\nDescription updated sucessfully.')
+                        sleep(1)
+                        break
+                    except:
+                        print('\nError: invalid entry, try again.')
+                        sleep(1)            
+            elif choice == 3:
+                while True:
+                    try:
+                        priority = str(input('\nSelect a task priority (min/mid/high): '))
+                        if priority not in ('min', 'mid', 'high'):
+                            print('\nError: select one of the specified options.')
+                            sleep(1)
+                        else:
+                            tasks[select_task]['priority'] = priority
+                            print('\nPriority updated sucessfully.')
+                            sleep(1)
+                            break
+                    except:
+                        print('\nError: invalid option, try again.')
+                        sleep(1)
             elif choice == 4:
                 tasks[select_task]['state'] = 'done'
                 print('\nTask marked as Finished.')
                 sleep(1)
-            else:
+            elif choice == 5:
                 break
         except:
-            print('\nTask not found.')
+            print('\nError: invalid option, try again.')
             sleep(1)
-            continue
             
         break
           
@@ -120,8 +176,20 @@ tasks = []
 
 
 while True:
-    main_menu()
-    choice = int(input('Select an option: '))
+    
+    while True:
+        try:
+            main_menu()
+            choice = int(input('Select an option: '))
+            if choice not in (1,2,3,4,5):
+                print('\nError: invalid option, try again.')
+                sleep(1)
+            else:
+                break
+        except:
+            print('\nError: invalid option, try again.')
+            sleep(1)
+            
     if choice == 1:
         task = newtask()
         tasks.append(task)
@@ -145,11 +213,21 @@ while True:
             sleep(1)
         else:
             list_tasks(tasks)
-            select_task = int(input('\nType the task ID: '))
-            tasks.pop(select_task-1)
-            print('\nTask deleted sucessfully.')
-            sleep(1)
-    else:
+            while True:
+                try:
+                    choice = int(input('\nSelect a task ID to delete: '))
+                    if choice == 0 or not tasks[choice-1]:
+                        print('\nError: invalid option, try again.')
+                        sleep(1)
+                    else:
+                        tasks.pop(choice-1)
+                        print('\nTask deleted sucessfully.')
+                        sleep(1)
+                        break
+                except:
+                    print('\nError: invalid option, try again.')
+                    sleep(1)
+    elif choice == 5:
         break
 
 
