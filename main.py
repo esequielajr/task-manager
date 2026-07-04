@@ -25,13 +25,15 @@ def update_menu():
     print('5 - Return\n')
  
     
-def newtask():
+def create_task():
     
     task = {}
     
+    utils.title('CREATE', size=5)
+    
     while True:
         try:
-            task['title'] = str(input('\nType the task title: '))
+            task['title'] = str(input('Type the task title: '))
             break
         except:
             print('Error, invalid entry, try again.')
@@ -176,6 +178,8 @@ def delete_task():
     
     list_tasks(tasks)
     
+    utils.title('DELETE', size=5)
+    
     while True:
         try:
             choice = int(input('\nSelect a task ID to delete: '))
@@ -211,7 +215,7 @@ while True:
             sleep(1)
             
     if choice == 1:
-        task = newtask()
+        task = create_task()
         tasks.append(task)
         print('\nTask created sucessfully.')
         sleep(1)
