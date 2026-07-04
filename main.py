@@ -170,6 +170,26 @@ def update_task():
             sleep(1)
             
         break
+
+       
+def delete_task():
+    
+    list_tasks(tasks)
+    
+    while True:
+        try:
+            choice = int(input('\nSelect a task ID to delete: '))
+            if choice == 0 or not tasks[choice-1]:
+                print('\nError: invalid option, try again.')
+                sleep(1)
+            else:
+                tasks.pop(choice-1)
+                print('\nTask deleted sucessfully.')
+                sleep(1)
+                break
+        except:
+            print('\nError: invalid option, try again.')
+            sleep(1)    
           
           
 tasks = []
@@ -212,21 +232,7 @@ while True:
             print('\nYou have not created tasks yet.')
             sleep(1)
         else:
-            list_tasks(tasks)
-            while True:
-                try:
-                    choice = int(input('\nSelect a task ID to delete: '))
-                    if choice == 0 or not tasks[choice-1]:
-                        print('\nError: invalid option, try again.')
-                        sleep(1)
-                    else:
-                        tasks.pop(choice-1)
-                        print('\nTask deleted sucessfully.')
-                        sleep(1)
-                        break
-                except:
-                    print('\nError: invalid option, try again.')
-                    sleep(1)
+            delete_task()        
     elif choice == 5:
         break
 
